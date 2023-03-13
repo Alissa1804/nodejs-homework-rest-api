@@ -1,9 +1,10 @@
 const joi = require("joi");
 
 const contactValidation = joi.object({
-  name: joi.string().min(1),
-  email: joi.string().email(),
-  phone: joi.string().min(5),
+  name: joi.string().min(1).required(),
+  email: joi.string().email().required(),
+  phone: joi.string().min(5).required(),
+  favorite: joi.boolean(),
 });
 
 const validator = (schema) => (body) => {

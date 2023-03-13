@@ -6,12 +6,14 @@ const {
   postContact,
   deleteContact,
   putContact,
-} = require("../../controllers/contacts.js");
+  updateStatus,
+} = require("../../controllers/index.js");
 
 router.get("/", getContacts);
 router.get("/:contactId", getById);
 router.post("", postContact);
 router.put("/:contactId", putContact);
 router.delete("/:contactId", deleteContact);
+router.patch("/:contactId/favorite", updateStatus);
 
 module.exports = router;
