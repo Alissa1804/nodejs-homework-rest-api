@@ -1,5 +1,6 @@
 const { User } = require("../../schemas/user/userModel");
 const bcrypt = require("bcryptjs");
+const gravatar = require("gravatar");
 
 const { registerValid } = require("../../schemas/user/validation");
 
@@ -15,10 +16,12 @@ const registerUser = async (req, res) => {
       return res.status(409).json({ message: "Email in use" });
     }
     const hashPassword = await bcrypt.hash(password, 10);
+    const avatarURL = gravatar.url(email);
     const result = await User.create({
       email,
       password: hashPassword,
       subscription,
+      avatarURL,
     });
     return res
       .status(201)
