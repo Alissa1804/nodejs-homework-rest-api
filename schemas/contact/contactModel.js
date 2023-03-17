@@ -17,10 +17,15 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      require: true,
+    },
   },
   { versionKey: false, timestamp: true }
 );
 
-const contact = mongoose.model("contact", contactSchema);
+const Contact = mongoose.model("contact", contactSchema);
 
-module.exports = contact;
+module.exports = { Contact };
